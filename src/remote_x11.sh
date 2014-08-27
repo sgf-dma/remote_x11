@@ -1,5 +1,17 @@
 #!/bin/sh
 
+# Run remote X11 client through ssh and socat
+# Args:
+# 1 - host for ssh to connect,
+# 2.. - executed by ssh as command.
+#
+# Each script instance allows connection for only one client, but script will
+# handle correctly several instances running (it'll increase local and remote
+# port number).
+#
+# Script prefers TCP connection to X server, because user running this script
+# will much likely be allowed in `xhost`.
+
 set -euf
 
 readonly True=1
